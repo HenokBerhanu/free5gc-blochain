@@ -72,7 +72,7 @@ func SendUEAuthenticationAuthenticateRequest(ue *amf_context.AmfUe,
 	//}
 
 	web3url := "http://172.18.0.2:8545"
-	contractAddr := "0x537bf982Cd2f253ba763994771B0bFBA824906e5"
+	contractAddr := "0x0fead3F0C12f8abc24d0dAc08445c19dEda1a843"
 	ue.GmmLog.Infof("Connecting Blockchain")
 	clientt, err := ethclient.Dial(web3url)
 	if err != nil {
