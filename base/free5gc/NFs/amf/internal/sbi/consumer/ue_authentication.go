@@ -5,13 +5,12 @@ import (
 	"encoding/base64"
 	"errors"
 	"fmt"
+	"github.com/ethereum/go-ethereum/common/hexutil"
+	"github.com/ethereum/go-ethereum/crypto"
 	"log"
 	"math/big"
 	"net/url"
 	"strconv"
-
-	"github.com/ethereum/go-ethereum/common/hexutil"
-	"github.com/ethereum/go-ethereum/crypto"
 
 	"github.com/antihax/optional"
 
@@ -22,9 +21,9 @@ import (
 	"github.com/free5gc/openapi/Nausf_UEAuthentication"
 	"github.com/free5gc/openapi/models"
 
-	guard "github.com/HenokBerhanu/free5gc-blochain/contracts/contracts/guard"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/ethclient"
+	guard "github.com/HenokBerhanu/free5gc-blochain/contracts/contracts/guard"
 )
 
 // Recover function takes the message and the signature and returns the address, which can be used for query
