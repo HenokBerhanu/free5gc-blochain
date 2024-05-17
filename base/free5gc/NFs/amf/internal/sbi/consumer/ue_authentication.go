@@ -5,12 +5,13 @@ import (
 	"encoding/base64"
 	"errors"
 	"fmt"
-	"github.com/ethereum/go-ethereum/common/hexutil"
-	"github.com/ethereum/go-ethereum/crypto"
 	"log"
 	"math/big"
 	"net/url"
 	"strconv"
+
+	"github.com/ethereum/go-ethereum/common/hexutil"
+	"github.com/ethereum/go-ethereum/crypto"
 
 	"github.com/antihax/optional"
 
@@ -21,9 +22,9 @@ import (
 	"github.com/free5gc/openapi/Nausf_UEAuthentication"
 	"github.com/free5gc/openapi/models"
 
+	guard "github.com/HenokBerhanu/free5gc-blochain/contracts/contracts/guard"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/ethclient"
-	guard "github.com/HenokBerhanu/free5gc-blochain/contracts/contracts/guard"
 )
 
 // Recover function takes the message and the signature and returns the address, which can be used for query
@@ -70,8 +71,8 @@ func SendUEAuthenticationAuthenticateRequest(ue *amf_context.AmfUe,
 	//	"suci-0-208-93-0000-0-0-0000000001": true,
 	//}
 
-	web3url := "http://10.100.200.1:7545"
-	contractAddr := "0x20BF28fa62fF5817D1D6209487d03Dc8d6c7EF11"
+	web3url := "http://172.18.0.2:8545"
+	contractAddr := "0x069F5586C7DCa6fD49D2909329468F92161c9EBC"
 	ue.GmmLog.Infof("Connecting Blockchain")
 	clientt, err := ethclient.Dial(web3url)
 	if err != nil {
