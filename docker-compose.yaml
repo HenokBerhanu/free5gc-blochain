@@ -207,48 +207,13 @@ services:
       - free5gc-smf
       - free5gc-upf
 
-  # free5gc-webui:
-  #   container_name: webui
-  #   image: free5gc/webui:v3.3.0
-  #   command: ./webui -c ./config/webuicfg.yaml
-  #   volumes:
-  #     - ./config/webuicfg.yaml:/free5gc/config/webuicfg.yaml
-  #   environment:
-  #     - GIN_MODE=release
-  #   networks:
-  #     privnet:
-  #       aliases:
-  #         - webui
-  #   ports:
-  #     - "5000:5000"
-  #   depends_on:
-  #     - db
-
-  ueransim:
-    container_name: ueransim
-    image: ghcr.io/pzeina/ueransim #free5gc/ueransim:latest
-    command: ./nr-gnb -c ./config/gnbcfg.yaml
-    volumes:
-      - ./config/gnbcfg.yaml:/ueransim/config/gnbcfg.yaml
-      - ./config/uecfg.yaml:/ueransim/config/uecfg.yaml
-    cap_add:
-      - NET_ADMIN
-    devices:
-      - "/dev/net/tun"
-    networks:
-      privnet:
-        aliases:
-          - gnb.free5gc.org
-    depends_on:
-      - free5gc-amf
-      - free5gc-upf
-  
-  # gnb:
-  #   container_name: gnb
-  #   image: free5gc/ueransim:latest
+  # ueransim:
+  #   container_name: ueransim
+  #   image: ghcr.io/pzeina/ueransim #free5gc/ueransim:latest
   #   command: ./nr-gnb -c ./config/gnbcfg.yaml
   #   volumes:
   #     - ./config/gnbcfg.yaml:/ueransim/config/gnbcfg.yaml
+  #     - ./config/uecfg.yaml:/ueransim/config/uecfg.yaml
   #   cap_add:
   #     - NET_ADMIN
   #   devices:
@@ -260,23 +225,41 @@ services:
   #   depends_on:
   #     - free5gc-amf
   #     - free5gc-upf
+  
+  gnb:
+    container_name: gnb
+    image: free5gc/ueransim:latest
+    command: ./nr-gnb -c ./config/gnbcfg.yaml
+    volumes:
+      - ./config/gnbcfg.yaml:/ueransim/config/gnbcfg.yaml
+    cap_add:
+      - NET_ADMIN
+    devices:
+      - "/dev/net/tun"
+    networks:
+      privnet:
+        aliases:
+          - gnb.free5gc.org
+    depends_on:
+      - free5gc-amf
+      - free5gc-upf
 
-  # ue:
-  #   container_name: ue
-  #   image: free5gc/ueransim:latest
-  #   command: ./nr-ue -c ./config/uecfg.yaml
-  #   volumes:
-  #     - ./config/uecfg.yaml:/ueransim/config/uecfg.yaml
-  #   cap_add:
-  #     - NET_ADMIN
-  #   devices:
-  #     - "/dev/net/tun"
-  #   networks:
-  #     privnet:
-  #       aliases:
-  #         - gnb.free5gc.org
-  #   depends_on:
-  #     - gnb
+  ue:
+    container_name: ue
+    image: free5gc/ueransim:latest
+    command: ./nr-ue -c ./config/uecfg.yaml
+    volumes:
+      - ./config/uecfg.yaml:/ueransim/config/uecfg.yaml
+    cap_add:
+      - NET_ADMIN
+    devices:
+      - "/dev/net/tun"
+    networks:
+      privnet:
+        aliases:
+          - ue.free5gc.org
+    depends_on:
+      - gnb
 
 networks:
   privnet:

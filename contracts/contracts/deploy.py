@@ -4,7 +4,7 @@ from eth_account.messages import encode_defunct
 import config
 
 # Config Part
-w3 = web3.Web3(web3.HTTPProvider('http://172.19.0.2:8545'))
+w3 = web3.Web3(web3.HTTPProvider('http://172.18.0.2:8545'))
 bytecode = config.bytecode
 abi = config.abi
 
