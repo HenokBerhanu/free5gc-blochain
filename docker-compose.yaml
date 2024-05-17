@@ -234,8 +234,8 @@ services:
       - ./config/gnbcfg.yaml:/ueransim/config/gnbcfg.yaml
     cap_add:
       - NET_ADMIN
-    devices:
-      - "/dev/net/tun"
+    # devices:
+    #   - "/dev/net/tun"
     networks:
       privnet:
         aliases:
