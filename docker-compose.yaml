@@ -62,6 +62,23 @@ services:
           - amf.free5gc.org
     depends_on:
       - free5gc-nrf
+  
+  uereg:
+    container_name: uereg
+    image: docker.io/henok28/f5gc-uereg:latest #uereg:latest
+    command: --config populatecfg.yaml
+    volumes:
+      - ./config/uereg.yaml:/populate/populatecfg.yaml
+    environment:
+      GIN_MODE: release
+    networks:
+      privnet:
+        aliases:
+          - uereg.free5gc.org
+    depends_on:
+      - db
+      - free5gc-amf
+      - free5gc-nrf
 
   free5gc-ausf:
     container_name: ausf
@@ -190,22 +207,22 @@ services:
       - free5gc-smf
       - free5gc-upf
 
-  free5gc-webui:
-    container_name: webui
-    image: free5gc/webui:v3.3.0
-    command: ./webui -c ./config/webuicfg.yaml
-    volumes:
-      - ./config/webuicfg.yaml:/free5gc/config/webuicfg.yaml
-    environment:
-      - GIN_MODE=release
-    networks:
-      privnet:
-        aliases:
-          - webui
-    ports:
-      - "5000:5000"
-    depends_on:
-      - db
+  # free5gc-webui:
+  #   container_name: webui
+  #   image: free5gc/webui:v3.3.0
+  #   command: ./webui -c ./config/webuicfg.yaml
+  #   volumes:
+  #     - ./config/webuicfg.yaml:/free5gc/config/webuicfg.yaml
+  #   environment:
+  #     - GIN_MODE=release
+  #   networks:
+  #     privnet:
+  #       aliases:
+  #         - webui
+  #   ports:
+  #     - "5000:5000"
+  #   depends_on:
+  #     - db
 
   ueransim:
     container_name: ueransim
