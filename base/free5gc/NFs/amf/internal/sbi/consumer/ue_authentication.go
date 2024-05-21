@@ -71,8 +71,8 @@ func SendUEAuthenticationAuthenticateRequest(ue *amf_context.AmfUe,
 	//	"suci-0-208-93-0000-0-0-0000000001": true,
 	//}
 
-	web3url := "http://172.18.0.2:8545"
-	contractAddr := "0x7d1bed920E35D1B326058bfe1E17F0fb6C167519"
+	web3url := "http://127.0.0.1:7545"
+	contractAddr := "0x9d537a5022d2761517D4F12412094a53C83aD21e"
 	ue.GmmLog.Infof("Connecting Blockchain")
 	clientt, err := ethclient.Dial(web3url)
 	if err != nil {
@@ -106,11 +106,11 @@ func SendUEAuthenticationAuthenticateRequest(ue *amf_context.AmfUe,
 			log.Fatal(err)
 		}
 		if salt.Cmp(big.NewInt(0)) == 0 {
-			return nil, nil, errors.New("Registration Storm Reject: Invalid Subscriber")
+			return nil, nil, errors.New("registration storm reject: invalid subscriber")
 		}
 		// check integrity with salt
 		if ban {
-			return nil, nil, errors.New("Registration Storm Reject: Malicious UE from UDM")
+			return nil, nil, errors.New("registration storm reject: malicious ue from udm")
 		}
 	}
 
