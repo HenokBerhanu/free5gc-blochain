@@ -4,13 +4,13 @@ from eth_account.messages import encode_defunct
 import config
 
 # Config Part
-w3 = web3.Web3(web3.HTTPProvider('http://172.19.0.2:7545'))
+w3 = web3.Web3(web3.HTTPProvider('http://172.20.0.2:7545'))
 bytecode = config.bytecode
 abi = config.abi
 
-availableUEs = ["0x74503A514bA1710FaB05BF1652785Fb08FBA5007", "0x82d9Adf8a8529e2464E347EE0CaD9320eeF4E411"]
+availableUEs = ["0x8A251458F6675454F7187b8d33eDE44e3FfAF1b4", "0x5Ae1dB4C704176543fB652211a19B788E89d2532"]
 salts = [1,1]
-banUEs = ["0x74503A514bA1710FaB05BF1652785Fb08FBA5007"]
+banUEs = ["0x8A251458F6675454F7187b8d33eDE44e3FfAF1b4"]
 
 def chain_deploy():
     # This is the Home Network which is the owner of the contract

@@ -1,34 +1,33 @@
-2024-05-21T01:41:10.875418424Z[36m [INFO][AMF][Main] [0mAMF version:  
+2024-05-21T01:50:25.629818726Z[36m [INFO][AMF][Main] [0mAMF version:  
 	Not specify ldflags (which link version) during go build
 	go version: go1.22.3 linux/amd64
-2024-05-21T01:41:10.875554897Z[36m [INFO][AMF][CFG] [0mRead config from [./config/amfcfg.yaml]
-2024-05-21T01:41:10.877856942Z[36m [INFO][AMF][Main] [0mLog enable is set to [true]
-2024-05-21T01:41:10.877876185Z[36m [INFO][AMF][Main] [0mLog level is set to [info]
-2024-05-21T01:41:10.877881958Z[36m [INFO][AMF][Main] [0mReport Caller is set to [false]
-2024-05-21T01:41:10.877887003Z[36m [INFO][AMF][Util] [0mamfconfig Info: Version[1.0.9]
-2024-05-21T01:41:10.878006645Z[36m [INFO][AMF][Init] [0mServer started
-2024-05-21T01:41:10.878113208Z[36m [INFO][AMF][Util] [0mamfconfig Info: Version[1.0.9]
-2024-05-21T01:41:10.900762746Z[36m [INFO][AMF][Ngap] [0mListen on 10.100.200.9:38412
-2024-05-21T01:41:11.493415130Z[36m [INFO][AMF][Ngap] [0m[AMF] SCTP Accept from: 10.100.200.14:44212
-2024-05-21T01:41:11.493692750Z[36m [INFO][AMF][Ngap] [0mCreate a new NG connection for: 10.100.200.14:44212
-2024-05-21T01:41:11.494563180Z[36m [INFO][AMF][Ngap][ran_addr:10.100.200.14:44212] [0mHandle NGSetupRequest
-2024-05-21T01:41:11.494601118Z[36m [INFO][AMF][Ngap][ran_addr:10.100.200.14:44212] [0mSend NG-Setup response
-2024-05-21T01:41:11.625980592Z[36m [INFO][AMF][Ngap] [0m[AMF] SCTP Accept from: 10.100.200.12/10.0.0.1:34845
-2024-05-21T01:41:11.631357675Z[36m [INFO][AMF][Ngap] [0mCreate a new NG connection for: 10.100.200.12/10.0.0.1:34845
-2024-05-21T01:41:11.632225116Z[36m [INFO][AMF][Ngap][ran_addr:10.100.200.12/10.0.0.1:34845] [0mHandle NGSetupRequest
-2024-05-21T01:41:11.632242343Z[33m [WARN][AMF][Ngap][ran_addr:10.100.200.12/10.0.0.1:34845] [0mMissing IE PagingDRX
-2024-05-21T01:41:11.632261547Z[36m [INFO][AMF][Ngap][ran_addr:10.100.200.12/10.0.0.1:34845] [0mSend NG-Setup response
-2024-05-21T01:41:11.927260788Z[36m [INFO][AMF][Ngap][ran_addr:10.100.200.14:44212] [0mHandle InitialUEMessage
-2024-05-21T01:41:11.927297963Z[36m [INFO][AMF][Ngap][amf_ue_ngap_id:RU:1,AU:1(3GPP)][ran_addr:10.100.200.14:44212] [0mNew RanUe [RanUeNgapID:1][AmfUeNgapID:1]
-2024-05-21T01:41:11.927342118Z[36m [INFO][AMF][Ngap][ran_addr:10.100.200.14:44212] [0m5GSMobileIdentity ["SUCI":"suci-0-208-93-0000-0-0-0000000500", err: <nil>]
-2024-05-21T01:41:11.928018732Z[36m [INFO][AMF][CTX] [0mNew AmfUe [supi:][guti:20893cafe0000000001]
-2024-05-21T01:41:11.928073739Z[36m [INFO][AMF][Gmm] [0mHandle event[Gmm Message], transition from [Deregistered] to [Deregistered]
-2024-05-21T01:41:11.928083551Z[36m [INFO][AMF][Gmm][amf_ue_ngap_id:RU:1,AU:1(3GPP)][supi:SUPI:] [0mHandle Registration Request
-2024-05-21T01:41:11.928093512Z[36m [INFO][AMF][Gmm][amf_ue_ngap_id:RU:1,AU:1(3GPP)][supi:SUPI:] [0mRegistrationType: Initial Registration
-2024-05-21T01:41:11.928105359Z[36m [INFO][AMF][Gmm][amf_ue_ngap_id:RU:1,AU:1(3GPP)][supi:SUPI:] [0mMobileIdentity5GS: SUCI[suci-0-208-93-0000-0-0-0000000500]
-2024-05-21T01:41:11.928121640Z[36m [INFO][AMF][Gmm] [0mHandle event[Start Authentication], transition from [Deregistered] to [Authentication]
-2024-05-21T01:41:11.928129963Z[36m [INFO][AMF][Gmm][amf_ue_ngap_id:RU:1,AU:1(3GPP)][supi:SUPI:] [0mAuthentication procedure
-2024-05-21T01:41:11.930250393Z[36m [INFO][AMF][Gmm][amf_ue_ngap_id:RU:1,AU:1(3GPP)][supi:SUPI:] [0mForward SUCI to AUSF
-2024-05-21T01:41:11.930279680Z[36m [INFO][AMF][Gmm][amf_ue_ngap_id:RU:1,AU:1(3GPP)][supi:SUPI:] [0mConnecting Blockchain
-2024-05-21T01:41:11.930308997Z[36m [INFO][AMF][Gmm][amf_ue_ngap_id:RU:1,AU:1(3GPP)][supi:SUPI:] [0mConnecting Blockchain Success
-2024/05/21 01:41:11 Post "http://127.0.0.1:7545": dial tcp 127.0.0.1:7545: connect: connection refused
+2024-05-21T01:50:25.629931670Z[36m [INFO][AMF][CFG] [0mRead config from [./config/amfcfg.yaml]
+2024-05-21T01:50:25.632092998Z[36m [INFO][AMF][Main] [0mLog enable is set to [true]
+2024-05-21T01:50:25.632116352Z[36m [INFO][AMF][Main] [0mLog level is set to [info]
+2024-05-21T01:50:25.632123717Z[36m [INFO][AMF][Main] [0mReport Caller is set to [false]
+2024-05-21T01:50:25.632130387Z[36m [INFO][AMF][Util] [0mamfconfig Info: Version[1.0.9]
+2024-05-21T01:50:25.632276575Z[36m [INFO][AMF][Init] [0mServer started
+2024-05-21T01:50:25.632433927Z[36m [INFO][AMF][Util] [0mamfconfig Info: Version[1.0.9]
+2024-05-21T01:50:25.638327518Z[36m [INFO][AMF][Ngap] [0mListen on 10.100.200.8:38412
+2024-05-21T01:50:26.365706348Z[36m [INFO][AMF][Ngap] [0m[AMF] SCTP Accept from: 10.100.200.14/10.0.0.1:48349
+2024-05-21T01:50:26.367122385Z[36m [INFO][AMF][Ngap] [0mCreate a new NG connection for: 10.100.200.14/10.0.0.1:48349
+2024-05-21T01:50:26.368082984Z[36m [INFO][AMF][Ngap][ran_addr:10.100.200.14/10.0.0.1:48349] [0mHandle NGSetupRequest
+2024-05-21T01:50:26.368103919Z[33m [WARN][AMF][Ngap][ran_addr:10.100.200.14/10.0.0.1:48349] [0mMissing IE PagingDRX
+2024-05-21T01:50:26.368151691Z[36m [INFO][AMF][Ngap][ran_addr:10.100.200.14/10.0.0.1:48349] [0mSend NG-Setup response
+2024-05-21T01:50:26.430087707Z[36m [INFO][AMF][Ngap] [0m[AMF] SCTP Accept from: 10.100.200.13:43540
+2024-05-21T01:50:26.430588213Z[36m [INFO][AMF][Ngap] [0mCreate a new NG connection for: 10.100.200.13:43540
+2024-05-21T01:50:26.431501467Z[36m [INFO][AMF][Ngap][ran_addr:10.100.200.13:43540] [0mHandle NGSetupRequest
+2024-05-21T01:50:26.431589783Z[36m [INFO][AMF][Ngap][ran_addr:10.100.200.13:43540] [0mSend NG-Setup response
+2024-05-21T01:50:26.832136170Z[36m [INFO][AMF][Ngap][ran_addr:10.100.200.13:43540] [0mHandle InitialUEMessage
+2024-05-21T01:50:26.832220915Z[36m [INFO][AMF][Ngap][amf_ue_ngap_id:RU:1,AU:1(3GPP)][ran_addr:10.100.200.13:43540] [0mNew RanUe [RanUeNgapID:1][AmfUeNgapID:1]
+2024-05-21T01:50:26.832303578Z[36m [INFO][AMF][Ngap][ran_addr:10.100.200.13:43540] [0m5GSMobileIdentity ["SUCI":"suci-0-208-93-0000-0-0-0000000500", err: <nil>]
+2024-05-21T01:50:26.833094105Z[36m [INFO][AMF][CTX] [0mNew AmfUe [supi:][guti:20893cafe0000000001]
+2024-05-21T01:50:26.833159430Z[36m [INFO][AMF][Gmm] [0mHandle event[Gmm Message], transition from [Deregistered] to [Deregistered]
+2024-05-21T01:50:26.833209872Z[36m [INFO][AMF][Gmm][amf_ue_ngap_id:RU:1,AU:1(3GPP)][supi:SUPI:] [0mHandle Registration Request
+2024-05-21T01:50:26.833245697Z[36m [INFO][AMF][Gmm][amf_ue_ngap_id:RU:1,AU:1(3GPP)][supi:SUPI:] [0mRegistrationType: Initial Registration
+2024-05-21T01:50:26.833285808Z[36m [INFO][AMF][Gmm][amf_ue_ngap_id:RU:1,AU:1(3GPP)][supi:SUPI:] [0mMobileIdentity5GS: SUCI[suci-0-208-93-0000-0-0-0000000500]
+2024-05-21T01:50:26.833333080Z[36m [INFO][AMF][Gmm] [0mHandle event[Start Authentication], transition from [Deregistered] to [Authentication]
+2024-05-21T01:50:26.833373896Z[36m [INFO][AMF][Gmm][amf_ue_ngap_id:RU:1,AU:1(3GPP)][supi:SUPI:] [0mAuthentication procedure
+2024-05-21T01:50:26.835888268Z[36m [INFO][AMF][Gmm][amf_ue_ngap_id:RU:1,AU:1(3GPP)][supi:SUPI:] [0mForward SUCI to AUSF
+2024-05-21T01:50:26.835949944Z[36m [INFO][AMF][Gmm][amf_ue_ngap_id:RU:1,AU:1(3GPP)][supi:SUPI:] [0mConnecting Blockchain
+2024-05-21T01:50:26.836002817Z[36m [INFO][AMF][Gmm][amf_ue_ngap_id:RU:1,AU:1(3GPP)][supi:SUPI:] [0mConnecting Blockchain Success

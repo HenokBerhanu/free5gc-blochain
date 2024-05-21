@@ -249,7 +249,7 @@ services:
     image: free5gc/ueransim:latest
     command: ./nr-ue -c ./config/uecfg.yaml
     volumes:
-      - ./config/uecfg.yaml:/ueransim/config/uecfg.yaml
+      - ./config/uecfg1.yaml:/ueransim/config/uecfg.yaml
     cap_add:
       - NET_ADMIN
     devices:
@@ -260,6 +260,42 @@ services:
           - ue.free5gc.org
     depends_on:
       - gnb
+
+  ue2:
+    container_name: ue2
+    image: free5gc/ueransim:latest
+    command: ./nr-ue -c ./config/uecfg.yaml
+    volumes:
+      - ./config/uecfg2.yaml:/ueransim/config/uecfg.yaml
+    cap_add:
+      - NET_ADMIN
+    devices:
+      - "/dev/net/tun"
+    networks:
+      privnet:
+        aliases:
+          - ue.free5gc.org
+    depends_on:
+      - gnb
+
+  ue3:
+    container_name: ue3
+    image: free5gc/ueransim:latest
+    command: ./nr-ue -c ./config/uecfg.yaml
+    volumes:
+      - ./config/uecfg3.yaml:/ueransim/config/uecfg.yaml
+    cap_add:
+      - NET_ADMIN
+    devices:
+      - "/dev/net/tun"
+    networks:
+      privnet:
+        aliases:
+          - ue.free5gc.org
+    depends_on:
+      - gnb
+
+    
 
 networks:
   privnet:
