@@ -1,7 +1,15 @@
-version: '3.8'
+# version: '3.8'
 
+# services:
+#   ganache:
+#     image: ghcr.io/pzeina/ganache:latest
+#     ports:
+#       - "8545:8545"
+
+version: '3.8'
 services:
   ganache:
-    image: ghcr.io/pzeina/ganache:latest
+    image: trufflesuite/ganache-cli
     ports:
-      - "8545:8545"
+      - "7545:7545"
+    command: ganache-cli -p 7545
