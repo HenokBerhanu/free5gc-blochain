@@ -46,14 +46,14 @@ services:
     depends_on:
       - db
 
-  free5gc-amf:
-    container_name: amf
-    image: free5gc-blochain-free5gc-amf #free5gc-compose-free5gc-amf # amf:latest
+  free5gc-amf1:
+    container_name: amf1
+    image:  free5gc-blochain-free5gc-amf #free5gc-compose-free5gc-amf # amf:latest  free5gc/amf:v3.3.0
     command: ./amf -c ./config/amfcfg.yaml
     expose:
       - "8000"
     volumes:
-      - ./config/amfcfg.yaml:/free5gc/config/amfcfg.yaml
+      - ./config/amfcfg1.yaml:/free5gc/config/amfcfg.yaml
     environment:
       GIN_MODE: release
     networks:
@@ -62,6 +62,23 @@ services:
           - amf.free5gc.org
     depends_on:
       - free5gc-nrf
+    
+  # free5gc-amf2:
+  #   container_name: amf2
+  #   image: free5gc/amf:v3.3.0 #free5gc-blochain-free5gc-amf #free5gc-compose-free5gc-amf # amf:latest
+  #   command: ./amf -c ./config/amfcfg.yaml
+  #   expose:
+  #     - "8000"
+  #   volumes:
+  #     - ./config/amfcfg2.yaml:/free5gc/config/amfcfg.yaml
+  #   environment:
+  #     GIN_MODE: release
+  #   networks:
+  #     privnet:
+  #       aliases:
+  #         - amf.free5gc.org
+  #   depends_on:
+  #     - free5gc-nrf
   
   uereg:
     container_name: uereg
@@ -77,7 +94,8 @@ services:
           - uereg.free5gc.org
     depends_on:
       - db
-      - free5gc-amf
+      - free5gc-amf1
+      # - free5gc-amf2
       - free5gc-nrf
 
   free5gc-ausf:
@@ -203,7 +221,8 @@ services:
         aliases:
           - n3iwf.free5gc.org
     depends_on:
-      - free5gc-amf
+      - free5gc-amf1
+      # - free5gc-amf2
       - free5gc-smf
       - free5gc-upf
 
@@ -213,7 +232,7 @@ services:
   #   command: ./nr-gnb -c ./config/gnbcfg.yaml
   #   volumes:
   #     - ./config/gnbcfg.yaml:/ueransim/config/gnbcfg.yaml
-  #     - ./config/uecfg.yaml:/ueransim/config/uecfg.yaml
+  #     - ./config/uecfg1.yaml:/ueransim/config/uecfg.yaml
   #   cap_add:
   #     - NET_ADMIN
   #   devices:
@@ -226,12 +245,14 @@ services:
   #     - free5gc-amf
   #     - free5gc-upf
   
-  gnb:
-    container_name: gnb
-    image: free5gc/ueransim:latest
-    command: ./nr-gnb -c ./config/gnbcfg.yaml
+  gnb1:
+    container_name: gnb1
+    image: henok28/ueransim-gnb:master
+    entrypoint: bash ./entrypoint.sh
+    #command: ./nr-gnb -c ./config/gnbcfg.yaml
     volumes:
-      - ./config/gnbcfg.yaml:/ueransim/config/gnbcfg.yaml
+      - ./config/gnbcfg1.yaml:/gnb/gnbcfg.yaml
+      - ./config/gnb1.sh:/gnb/entrypoint.sh
     cap_add:
       - NET_ADMIN
     # devices:
@@ -241,15 +262,37 @@ services:
         aliases:
           - gnb.free5gc.org
     depends_on:
-      - free5gc-amf
+      - free5gc-amf1
       - free5gc-upf
 
-  ue:
-    container_name: ue
-    image: free5gc/ueransim:latest
-    command: ./nr-ue -c ./config/uecfg.yaml
+  # gnb2:
+  #   container_name: gnb2
+  #   image: henok28/ueransim-gnb:master
+  #   entrypoint: bash ./entrypoint.sh
+  #   #command: ./nr-gnb -c ./config/gnbcfg.yaml
+  #   volumes:
+  #     - ./config/gnbcfg2.yaml:/gnb/gnbcfg.yaml
+  #     - ./config/gnb2.sh:/gnb/entrypoint.sh
+  #   cap_add:
+  #     - NET_ADMIN
+  #   # devices:
+  #   #   - "/dev/net/tun"
+  #   networks:
+  #     privnet:
+  #       aliases:
+  #         - gnb.free5gc.org
+  #   depends_on:
+  #     - free5gc-amf2
+  #     - free5gc-upf
+
+  ue1:
+    container_name: ue1
+    image: henok28/ueransim-ue:master
+    entrypoint: bash ./entrypoint.sh
+    #command: ./nr-ue -c ./config/uecfg.yaml
     volumes:
-      - ./config/uecfg1.yaml:/ueransim/config/uecfg.yaml
+      - ./config/uecfg1.yaml:/ue/uecfg.yaml
+      - ./config/ue1.sh:/ue/entrypoint.sh
     cap_add:
       - NET_ADMIN
     devices:
@@ -259,14 +302,16 @@ services:
         aliases:
           - ue.free5gc.org
     depends_on:
-      - gnb
+      - gnb1
 
   ue2:
     container_name: ue2
-    image: free5gc/ueransim:latest
-    command: ./nr-ue -c ./config/uecfg.yaml
+    image: henok28/ueransim-ue:master
+    entrypoint: bash ./entrypoint.sh
+    #command: ./nr-ue -c ./config/uecfg.yaml
     volumes:
-      - ./config/uecfg2.yaml:/ueransim/config/uecfg.yaml
+      - ./config/uecfg2.yaml:/ue/uecfg.yaml
+      - ./config/ue2.sh:/ue/entrypoint.sh
     cap_add:
       - NET_ADMIN
     devices:
@@ -276,24 +321,24 @@ services:
         aliases:
           - ue.free5gc.org
     depends_on:
-      - gnb
+      - gnb1
 
-  ue3:
-    container_name: ue3
-    image: free5gc/ueransim:latest
-    command: ./nr-ue -c ./config/uecfg.yaml
-    volumes:
-      - ./config/uecfg3.yaml:/ueransim/config/uecfg.yaml
-    cap_add:
-      - NET_ADMIN
-    devices:
-      - "/dev/net/tun"
-    networks:
-      privnet:
-        aliases:
-          - ue.free5gc.org
-    depends_on:
-      - gnb
+  # ue3:
+  #   container_name: ue3
+  #   image: free5gc/ueransim:latest
+  #   command: ./nr-ue -c ./config/uecfg.yaml
+  #   volumes:
+  #     - ./config/uecfg3.yaml:/ueransim/config/uecfg.yaml
+  #   cap_add:
+  #     - NET_ADMIN
+  #   devices:
+  #     - "/dev/net/tun"
+  #   networks:
+  #     privnet:
+  #       aliases:
+  #         - ue.free5gc.org
+  #   depends_on:
+  #     - gnb
 
     
 
