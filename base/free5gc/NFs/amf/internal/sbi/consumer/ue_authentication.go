@@ -86,6 +86,7 @@ func SendUEAuthenticationAuthenticateRequest(ue *amf_context.AmfUe,
 
 	clientt, err := ethclient.Dial(web3url)
 	if err != nil {
+		ue.GmmLog.Errorf("Failed to connect to blockchain: %v", err)
 		log.Fatal(err)
 	}
 
@@ -94,11 +95,13 @@ func SendUEAuthenticationAuthenticateRequest(ue *amf_context.AmfUe,
 	address := common.HexToAddress(contractAddr)
 	instance, err := guard.NewGuard(address, clientt)
 	if err != nil {
+		ue.GmmLog.Errorf("Failed to create contract instance: %v", err)
 		log.Fatal(err)
 	}
 
 	UDMstat, err := instance.GetUDMStatus(nil)
 	if err != nil {
+		ue.GmmLog.Errorf("Failed to get UDM status: %v", err)
 		log.Fatal(err)
 	}
 
@@ -118,6 +121,7 @@ func SendUEAuthenticationAuthenticateRequest(ue *amf_context.AmfUe,
 
 		salt, ban, err := instance.GetSaltStatus(nil, UEaddress)
 		if err != nil {
+			ue.GmmLog.Errorf("Failed to get salt status: %v", err)
 			log.Fatal(err)
 		}
 
@@ -132,6 +136,8 @@ func SendUEAuthenticationAuthenticateRequest(ue *amf_context.AmfUe,
 			ue.GmmLog.Errorf("Registration storm reject: malicious ue from udm")
 			return nil, nil, errors.New("registration storm reject: malicious ue from udm")
 		}
+	} else {
+		ue.GmmLog.Infof("UDM is not under attack. Proceeding with normal authentication.")
 	}
 
 	ueAuthenticationCtx, httpResponse, err := client.DefaultApi.UeAuthenticationsPost(context.Background(), authInfo)
@@ -143,14 +149,17 @@ func SendUEAuthenticationAuthenticateRequest(ue *amf_context.AmfUe,
 		}
 	}()
 	if err == nil {
+		ue.GmmLog.Infof("User authenticated successfully: %s", ue.Suci)
 		return &ueAuthenticationCtx, nil, nil
 	} else if httpResponse != nil {
 		if httpResponse.Status != err.Error() {
 			return nil, nil, err
 		}
 		problem := err.(openapi.GenericOpenAPIError).Model().(models.ProblemDetails)
+		ue.GmmLog.Errorf("Authentication problem: %v", problem)
 		return nil, &problem, nil
 	} else {
+		ue.GmmLog.Errorf("Authentication failed: server no response")
 		return nil, nil, openapi.ReportError("server no response")
 	}
 }
