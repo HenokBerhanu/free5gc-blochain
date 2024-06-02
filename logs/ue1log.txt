@@ -1,15 +1,15 @@
 UERANSIM v3.2.6
-[2024-06-02 05:22:31.898] [nas] [info] UE switches to state [MM-DEREGISTERED/PLMN-SEARCH]
-[2024-06-02 05:22:31.899] [rrc] [debug] New signal detected for cell[1], total [1] cells in coverage
-[2024-06-02 05:22:31.899] [nas] [info] Selected plmn[208/93]
-[2024-06-02 05:22:31.899] [rrc] [info] Selected cell plmn[208/93] tac[1] category[SUITABLE]
-[2024-06-02 05:22:31.899] [nas] [info] UE switches to state [MM-DEREGISTERED/PS]
-[2024-06-02 05:22:31.899] [nas] [info] UE switches to state [MM-DEREGISTERED/NORMAL-SERVICE]
-[2024-06-02 05:22:31.899] [nas] [debug] Initial registration required due to [MM-DEREG-NORMAL-SERVICE]
-[2024-06-02 05:22:31.899] [nas] [debug] UAC access attempt is allowed for identity[0], category[MO_sig]
-[2024-06-02 05:22:31.899] [nas] [debug] Sending Initial Registration
-[2024-06-02 05:22:31.899] [nas] [info] UE switches to state [MM-REGISTER-INITIATED]
-[2024-06-02 05:22:31.899] [rrc] [debug] Sending RRC Setup Request
-[2024-06-02 05:22:31.899] [rrc] [info] RRC connection established
-[2024-06-02 05:22:31.899] [rrc] [info] UE switches to state [RRC-CONNECTED]
-[2024-06-02 05:22:31.899] [nas] [info] UE switches to state [CM-CONNECTED]
+[2024-06-02 05:32:06.405] [nas] [info] UE switches to state [MM-DEREGISTERED/PLMN-SEARCH]
+[2024-06-02 05:32:06.406] [rrc] [debug] New signal detected for cell[1], total [1] cells in coverage
+[2024-06-02 05:32:06.406] [nas] [info] Selected plmn[208/93]
+[2024-06-02 05:32:06.406] [rrc] [info] Selected cell plmn[208/93] tac[1] category[SUITABLE]
+[2024-06-02 05:32:06.406] [nas] [info] UE switches to state [MM-DEREGISTERED/PS]
+[2024-06-02 05:32:06.406] [nas] [info] UE switches to state [MM-DEREGISTERED/NORMAL-SERVICE]
+[2024-06-02 05:32:06.406] [nas] [debug] Initial registration required due to [MM-DEREG-NORMAL-SERVICE]
+[2024-06-02 05:32:06.406] [nas] [debug] UAC access attempt is allowed for identity[0], category[MO_sig]
+[2024-06-02 05:32:06.406] [nas] [debug] Sending Initial Registration
+[2024-06-02 05:32:06.406] [nas] [info] UE switches to state [MM-REGISTER-INITIATED]
+[2024-06-02 05:32:06.406] [rrc] [debug] Sending RRC Setup Request
+[2024-06-02 05:32:06.406] [rrc] [info] RRC connection established
+[2024-06-02 05:32:06.406] [rrc] [info] UE switches to state [RRC-CONNECTED]
+[2024-06-02 05:32:06.406] [nas] [info] UE switches to state [CM-CONNECTED]
