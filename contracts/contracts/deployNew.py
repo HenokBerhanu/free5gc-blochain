@@ -9,8 +9,18 @@ bytecode = config.bytecode
 abi = config.abi
 
 availableUEs = ["0x9F2f46c24fF6F7dB5FB371E736B58CD3835a6d78", "0x2FC53e4F6788e85045e019FA9D75930c4804cA39"]
-salts = [1,0]
+salts = [1, 1]
 banUEs = ["0x9F2f46c24fF6F7dB5FB371E736B58CD3835a6d78"]
+
+# Example private keys from Ganache
+private_key_good = '0x993ffe8ff6cf47825b907c2590fe6576d653c9e009503b33dfa8ed5376cff121'
+private_key_bad = '0xcf92e7a8e29276d6574d889a26258605a14f3cbe7ac68b5226d00927f1f09b7d'
+
+
+def generate_signature(message, private_key):
+    message_hash = w3.keccak(text=message)
+    signed_message = Account.sign_message(encode_defunct(message_hash), private_key=private_key)
+    return signed_message.signature.hex()
 
 def chain_deploy():
     # This is the Home Network which is the owner of the contract
@@ -50,3 +60,11 @@ chain_putUE(availableUEs, salts, contract) # setup the UEs
 chain_banUser(banUEs, contract) # ban some UEs
 print(chain_getUDMstatus(contract))
 print(chain_getStatus(availableUEs, contract)) # See the result confirming it is working
+
+# Generate signatures
+example_message = "hello"
+good_signature = generate_signature(example_message, private_key_good)
+bad_signature = generate_signature(example_message, private_key_bad)
+
+print("Good Signature:", good_signature)
+print("Bad Signature:", bad_signature)

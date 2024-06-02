@@ -1,0 +1,28 @@
+import web3
+from eth_account import Account
+from eth_account.messages import encode_defunct
+
+# Connect to Ganache local blockchain
+w3 = web3.Web3(web3.HTTPProvider('http://172.18.0.2:8545'))
+
+# Use private keys from Ganache
+private_key_good = '0x90ab495f84b564dd52a5e3e30ec3164cee3938de5846fcd76b165445d5928ad9'  # Example private key from Ganache account
+private_key_bad = '0xcf92e7a8e29276d6574d889a26258605a14f3cbe7ac68b5226d00927f1f09b7d'  # Another example private key
+
+# Create accounts from private keys
+account_good = Account.from_key(private_key_good)
+account_bad = Account.from_key(private_key_bad)
+
+# Example message to sign
+message = "hello"
+message_hash = w3.keccak(text=message)
+
+# Sign the message with the good private key
+signed_message_good = Account.sign_message(encode_defunct(message_hash), private_key=private_key_good)
+good_signature = signed_message_good.signature.hex()
+print("Good Signature:", good_signature)
+
+# Sign the message with the bad private key
+signed_message_bad = Account.sign_message(encode_defunct(message_hash), private_key=private_key_bad)
+bad_signature = signed_message_bad.signature.hex()
+print("Bad Signature:", bad_signature)
