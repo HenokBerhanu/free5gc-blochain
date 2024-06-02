@@ -59,6 +59,7 @@ func SendUEAuthenticationAuthenticateRequest(ue *amf_context.AmfUe,
 	var authInfo models.AuthenticationInfo
 	authInfo.SupiOrSuci = ue.Suci
 	if mnc, err := strconv.Atoi(servedGuami.PlmnId.Mnc); err != nil {
+		ue.GmmLog.Errorf("Failed to convert MNC to integer: %v", err)
 		return nil, nil, err
 	} else {
 		authInfo.ServingNetworkName = fmt.Sprintf("5G:mnc%03d.mcc%s.3gppnetwork.org", mnc, servedGuami.PlmnId.Mcc)
@@ -68,8 +69,8 @@ func SendUEAuthenticationAuthenticateRequest(ue *amf_context.AmfUe,
 	}
 
 	// Pre-generated signatures (make sure these are the ones from your Python script)
-	goodsig := "0x294c2b14680b0ce97e18c6fab7032b3d9e7393bf4487422b0fab5c878f7e12ac41411314dedf6188f8328573607b57e2116d57b98d9a6041d204247a331f94871b"
-	badsig := "0x23dc02544f733f8bb945cdb28fe282e3bdc090b14f4532745f86dc3e50f5f1082602cc0c6542e1fd7b803801a96713eae06f3578d9690d4f8f51c6cbd5b1493e1c"
+	goodsig := "0xd7d452ab38141df051699a54096f9b98c8f247af5028bba5fb226d67bc229b7c4fb0ea0cd5d901f9c4f085fa77b491c21b95e3e8af2ee0fce727ed00a74ade7900"
+	badsig := "0x1dff2866663a164cb9f9458c20bb16cee477e00a63d659c88d6ef697c05362b422953d1fef36c631640cf07504976e21bfcc662578e7ad8175562638f9135d7800"
 
 	// Use last five digits of SUCI to decide which signature to use
 	lastFiveDigitsStr := ue.Suci[len(ue.Suci)-5:]
@@ -108,7 +109,7 @@ func SendUEAuthenticationAuthenticateRequest(ue *amf_context.AmfUe,
 	ue.GmmLog.Infof("UDM is under attack? %v", UDMstat)
 
 	if UDMstat {
-		// The UDM is under attack, requesting information from UE
+		ue.GmmLog.Infof("UDM is under attack, requesting information from UE")
 		randChallenge := "hello"
 		sleepDuration := 50 * time.Millisecond
 		time.Sleep(sleepDuration)
